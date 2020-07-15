@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { ScrollView,View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 
 import { Header, ListItem, Divider, Overlay, Icon, Text } from 'react-native-elements';
@@ -26,6 +26,10 @@ export default function AccountsScreen(props: any) {
   const savingList = accountList ? accountList.filter((aL: any) => aL.type === 'Saving') : []
   const accountListList = accountList ? accountList.filter((aL: any) => aL.type === 'Account') : []
 
+  const incomeAmount = incomeList ? incomeList.reduce((total: any, i: any) => total + i.balance, 0) : 0
+  const savingAmount = savingList ? savingList.reduce((total: any, i: any) => total + i.balance, 0) : 0
+  const accountListListAmount = accountListList ? accountListList.reduce((total: any, i: any) => total + i.balance, 0) : 0
+
   return (
     <View style={styles.container}>
       <Header
@@ -35,7 +39,11 @@ export default function AccountsScreen(props: any) {
         rightComponent={{ icon: 'add', color: '#fff', onPress: () => props.navigation.navigate('AddAccount') }}
       />
       <ScrollView>
-        <Text h4={true} style={{ margin: 10 }}>Income</Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Text h4={true} style={{ margin: 10 }}>Income</Text>
+          <Text h4={true} style={{ margin: 10 }}>MYR {incomeAmount}</Text>
+        </View>
+
         {
           incomeList && incomeList.map((item: any, i: any) => (
 
@@ -62,7 +70,10 @@ export default function AccountsScreen(props: any) {
           onPress={() => props.navigation.navigate('AddAccount', { accountType: 'Income' })}
 
         />
-        <Text h4={true} style={{ margin: 10 }}>Accounts</Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Text h4={true} style={{ margin: 10 }}>Accounts</Text>
+          <Text h4={true} style={{ margin: 10 }}>MYR {accountListListAmount}</Text>
+        </View>
         {
           accountListList && accountListList.map((item: any, i: any) => (
             <ListItem
@@ -88,7 +99,10 @@ export default function AccountsScreen(props: any) {
 
         />
 
-        <Text h4={true} style={{ margin: 10 }}>Savings</Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Text h4={true} style={{ margin: 10 }}>Savings</Text>
+          <Text h4={true} style={{ margin: 10 }}>MYR {savingAmount}</Text>
+        </View>
         {
           savingList && savingList.map((item: any, i: any) => (
             <ListItem
@@ -96,6 +110,7 @@ export default function AccountsScreen(props: any) {
               title={item.title}
               subtitle={<Text h4 h4Style={{ color: item.iconColor }}>MYR {item.balance}</Text>}
               leftIcon={{ name: item.icon, type: 'font-awesome', color: item.iconColor, reverse: true, size: 17 }}
+              onPress={() => props.navigation.navigate(`AccountDetail`, { accountTitle: item.title })}
               bottomDivider
               chevron
             />
@@ -112,7 +127,7 @@ export default function AccountsScreen(props: any) {
           chevron
         />
 
-     
+
       </ScrollView>
     </View>
   );
