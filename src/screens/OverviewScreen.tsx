@@ -41,8 +41,8 @@ export default function OverviewScreen(props: any) {
         rightComponent={{ icon: 'add', color: '#fff', onPress: () => props.navigation.navigate('AddCategory') }}
       />
       <ScrollView>
-        <Text h4={true}>Under Construction</Text>
-        <VictoryChart
+        <Text h4={true}>Coming Soon</Text>
+        {/* <VictoryChart
           width={350}
           theme={VictoryTheme.material}
           domainPadding={10}>
@@ -78,7 +78,7 @@ export default function OverviewScreen(props: any) {
             innerRadius={20}
             padAngle={5}
             
-          />
+          /> */}
       
 
       </ScrollView>
