@@ -1,7 +1,16 @@
 {
   "expo": {
-    "name": "lunawan",
-    "slug": "lunawan",
+    "name": "money tracker",
+    "slug": "money-tracker",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.syahnet.moneytracker",
+      "buildNumber": "0.1.0"
+    },
+    "android": {
+      "package": "com.syahnet.moneytracker",
+      "versionCode": 1
+    },
     "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./src/assets/images/icon.png",
@@ -17,10 +26,7 @@
     },
     "assetBundlePatterns": [
       "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
+    ],   
     "web": {
       "favicon": "./src/assets/images/favicon.png"
     }

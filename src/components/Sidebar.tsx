@@ -30,13 +30,13 @@ const Sidebar = (props: any) => {
     return (
         <View style={{ flex: 1 }}>
             <View style={{ flex: 1, backgroundColor: '#2089dc' }}></View>
-            <ListItem
+            {/* <ListItem
                 // key={i}
                 title={'item.title'}
                 leftIcon={{ name: 'book' }}
                 bottomDivider
                 chevron
-            />
+            /> */}
             <ListItem
                 // key={i}
                 title={'RESET DATA'}
